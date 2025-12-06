@@ -243,8 +243,7 @@ const htmlTemplate = `
                             color: #333333;
                           "
                         >
-                          Best,<br />
-                          <strong>Evan</strong>
+                          <strong>Tech-Art</strong>
                         </div>
                       </td>
                     </tr>
@@ -306,7 +305,7 @@ const htmlTemplate = `
                             color: #888888;
                           "
                         >
-                          © 2025 Evan Huang
+                          © 2025 Tech-Art Studio
                         </div>
                       </td>
                     </tr>
@@ -331,9 +330,9 @@ const htmlTemplate = `
                           "
                         >
                           For questions contact <a
-                            href="mailto:evan.huang000@proton.me"
+                            href="mailto:www@xyehr.cn"
                             class="footer-link"
-                            >evan.huang000@proton.me</a
+                            >www@xyehr.cn</a
                           >
                         </div>
                       </td>
