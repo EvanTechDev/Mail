@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken'
 export function middleware(req: NextRequest) {
   const token = req.cookies.get('access_token')?.value
 
+  if (req.nextUrl.pathname === '/password') return NextResponse.next()
+
   if (!token) {
     return NextResponse.redirect(new URL('/password', req.url))
   }
@@ -12,7 +14,7 @@ export function middleware(req: NextRequest) {
   try {
     jwt.verify(token, process.env.JWT_SECRET!)
     return NextResponse.next()
-  } catch (e) {
+  } catch (err) {
     return NextResponse.redirect(new URL('/password', req.url))
   }
 }
