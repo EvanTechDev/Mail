@@ -13,34 +13,34 @@ export default function PasswordPage() {
   const router = useRouter()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setLoading(true)
-    setError('')
+  event.preventDefault()
+  setLoading(true)
+  setError('')
 
-    const formData = new FormData(event.currentTarget)
-    const password = formData.get('password')
+  const formData = new FormData(event.currentTarget)
+  const password = formData.get('password')
 
-    try {
-      const response = await fetch('/api/verify-password', {
-        method: 'POST',
-        body: JSON.stringify({ password }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+  try {
+    const response = await fetch('/api/verify-password', {
+      method: 'POST',
+      body: JSON.stringify({ password }),
+      headers: { 'Content-Type': 'application/json' },
+      cache: 'no-store',
+    })
 
-      if (response.ok) {
-        router.refresh()
-        router.push('/')
-      } else {
-        setError('Invalid password')
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.')
-    } finally {
-      setLoading(false)
+    if (response.ok) {
+      router.push('/')
+    } else {
+      setError('Invalid password')
     }
+  } catch (err) {
+    console.error(err)
+    setError('An error occurred. Please try again.')
+  } finally {
+    setLoading(false)
   }
+}
+
 
   return (
     <div className="flex min-h-svh items-center justify-center p-4">
