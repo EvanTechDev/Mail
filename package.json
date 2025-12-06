@@ -59,7 +59,8 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
     "zod": "latest",
-    "resend": "latest"
+    "resend": "latest",
+    "jsonwebtoken": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
