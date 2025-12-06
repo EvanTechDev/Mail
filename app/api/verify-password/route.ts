@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server'
-import bcrypt from 'bcrypt'
-import crypto from 'crypto'
-
-const SESSIONS = new Map<string, number>() // <token, expiration>
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 
 export async function POST(request: Request) {
   const { password } = await request.json()
@@ -16,17 +14,19 @@ export async function POST(request: Request) {
     return new NextResponse('Unauthorized', { status: 401 })
   }
 
-  const token = crypto.randomBytes(32).toString('hex')
-  const expires = Date.now() + 5 * 60 * 1000
-  SESSIONS.set(token, expires)
+  const token = jwt.sign(
+    { access: true },
+    process.env.JWT_SECRET!,
+    { expiresIn: '5m' }
+  )
 
-  const response = NextResponse.json({ ok: true })
-  response.cookies.set('access_token', token, {
+  const res = NextResponse.json({ ok: true })
+  res.cookies.set('access_token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 5 * 60,
+    sameSite: 'strict',
+    maxAge: 60 * 5,
   })
 
-  return response
+  return res
 }
