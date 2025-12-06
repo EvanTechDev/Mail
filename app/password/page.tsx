@@ -17,24 +17,25 @@ export default function PasswordPage() {
     setLoading(true)
     setError('')
 
-    try {
-      const formData = new FormData(event.currentTarget)
-      const password = formData.get('password')?.toString() || ''
+    const formData = new FormData(event.currentTarget)
+    const password = formData.get('password')
 
+    try {
       const response = await fetch('/api/verify-password', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
-        cache: 'no-store',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
 
       if (response.ok) {
-        window.location.href = '/'
+        router.refresh()
+        router.push('/')
       } else {
         setError('Invalid password')
       }
     } catch (err) {
-      console.error(err)
       setError('An error occurred. Please try again.')
     } finally {
       setLoading(false)
@@ -42,7 +43,7 @@ export default function PasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
+    <div className="flex min-h-svh items-center justify-center p-4">
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Password Required</CardTitle>
