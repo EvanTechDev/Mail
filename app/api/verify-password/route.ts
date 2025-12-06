@@ -1,20 +1,32 @@
-import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
+import bcrypt from 'bcrypt'
+import crypto from 'crypto'
+
+const SESSIONS = new Map<string, number>() // <token, expiration>
 
 export async function POST(request: Request) {
   const { password } = await request.json()
 
-  if (password === process.env.ACCESS_PASSWORD) {
-    const response = NextResponse.json('OK', { status: 200 })
-    response.cookies.set('access_token', 'true', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 5 * 60,
-    })
+  const ok = await bcrypt.compare(
+    password,
+    process.env.ACCESS_PASSWORD_HASH!
+  )
 
-    return response
+  if (!ok) {
+    return new NextResponse('Unauthorized', { status: 401 })
   }
 
-  return new NextResponse('Unauthorized', { status: 401 })
+  const token = crypto.randomBytes(32).toString('hex')
+  const expires = Date.now() + 5 * 60 * 1000
+  SESSIONS.set(token, expires)
+
+  const response = NextResponse.json({ ok: true })
+  response.cookies.set('access_token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 5 * 60,
+  })
+
+  return response
 }
