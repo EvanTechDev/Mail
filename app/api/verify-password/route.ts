@@ -1,22 +1,20 @@
+import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 
-export async function POST(req: Request) {
-  const { password } = await req.json()
-  const isValid = await bcrypt.compare(password, process.env.ACCESS_PASSWORD_HASH!)
-  if (!isValid) return new NextResponse('Unauthorized', { status: 401 })
+export async function POST(request: Request) {
+  const { password } = await request.json()
 
-  const token = jwt.sign({ access: true }, process.env.JWT_SECRET!, { expiresIn: '5m' })
+  if (password === process.env.ACCESS_PASSWORD) {
+    const response = NextResponse.json('OK', { status: 200 })
+    response.cookies.set('access_token', 'true', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 5 * 60,
+    })
 
-  const res = NextResponse.json({ ok: true })
-  res.cookies.set('access_token', token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    maxAge: 60 * 5,
-  })
+    return response
+  }
 
-  return res
+  return new NextResponse('Unauthorized', { status: 401 })
 }
