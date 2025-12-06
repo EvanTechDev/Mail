@@ -60,7 +60,8 @@
     "vaul": "^0.9.6",
     "zod": "latest",
     "resend": "latest",
-    "jsonwebtoken": "latest"
+    "jsonwebtoken": "latest",
+    "bcryptjs": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
