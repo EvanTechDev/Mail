@@ -29,7 +29,7 @@ export default function PasswordPage() {
       })
 
       if (response.ok) {
-        router.push('/')
+        window.location.href = '/'
       } else {
         setError('Invalid password')
       }
