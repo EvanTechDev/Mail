@@ -7,195 +7,348 @@ import { Resend } from "resend"
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const htmlTemplate = `
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="ltr" lang="en">
+<!doctype html>
+<html lang="en">
   <head>
-    <link
-      rel="preload"
-      as="image"
-      href="https://cdn.xyehr.cn/images/svg/ta.svg" />
-    <link
-      rel="preload"
-      as="image"
-      href="https://cdn.xyehr.cn/images/svg/x.svg" />
-    <link
-      rel="preload"
-      as="image"
-      href="https://cdn.xyehr.cn/images/svg/github.svg" />
-    <link
-      rel="preload"
-      as="image"
-      href="https://cdn.xyehr.cn/images/svg/youtube.svg" />
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-    <meta name="x-apple-disable-message-reformatting" />
-    <style>
-      @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        mso-font-alt: 'Helvetica';
-        src: url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap) format('woff2');
+    <title></title>
+    <!--[if !mso]><!-- -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style type="text/css">
+      #outlook a {
+        padding: 0;
       }
-
-      * {
-        font-family: 'Inter', Helvetica, Arial, sans-serif;
+      .ReadMsgBody {
+        width: 100%;
+      }
+      .ExternalClass {
+        width: 100%;
+      }
+      .ExternalClass * {
+        line-height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+      }
+      p {
+        display: block;
+        margin: 13px 0;
       }
     </style>
-    <style>
-      @font-face {
-        font-family: 'Inter';
-        font-style: normal;
+    <!--[if !mso]><!-->
+    <style type="text/css">
+      @media only screen and (max-width: 480px) {
+        @-ms-viewport {
+          width: 320px;
+        }
+        @viewport {
+          width: 320px;
+        }
+      }
+    </style>
+    <!--<![endif]-->
+    <!--[if mso]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG />
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+    <![endif]-->
+    <!--[if lte mso 11]>
+      <style type="text/css">
+        .outlook-group-fix {
+          width: 100% !important;
+        }
+      </style>
+    <![endif]-->
+    <style type="text/css">
+      @media only screen and (min-width: 480px) {
+        .mj-column-per-100 {
+          width: 100% !important;
+          max-width: 100%;
+        }
+      }
+    </style>
+    <style type="text/css">
+      @media only screen and (max-width: 480px) {
+        table.full-width-mobile {
+          width: 100% !important;
+        }
+        td.full-width-mobile {
+          width: auto !important;
+        }
+      }
+    </style>
+    <style type="text/css">
+      h1 {
+        font-family: -apple-system, system-ui, BlinkMacSystemFont;
+        font-size: 24px;
         font-weight: 600;
-        mso-font-alt: 'Helvetica';
-        src: url(https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap) format('woff2');
+        line-height: 24px;
+        text-align: left;
+        color: #333333;
+        padding-bottom: 18px;
       }
 
-      * {
-        font-family: 'Inter', Helvetica, Arial, sans-serif;
+      p {
+        font-family: -apple-system, system-ui, BlinkMacSystemFont;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 24px;
+        text-align: left;
+        color: #333333;
       }
-    </style>
-    <style>
-      @font-face {
-        font-family: 'ECA-L';
-        font-style: normal;
+
+      a {
+        color: #0867ec;
         font-weight: 400;
-        mso-font-alt: 'Helvetica';
-        src: url(https://cdn.xyehr.cn/font/source/ECA-Light.ttf) format('truetype');
       }
-
-      * {
-        font-family: 'ECA-L', Helvetica, Arial, sans-serif;
+      a.footer-link {
+        color: #888888;
+      }
+      strong {
+        font-weight: 500;
       }
     </style>
   </head>
-  <body
-    style="background-color:rgb(255,255,255);margin:0px;padding:0px;font-family:Helvetica, Arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%">
-    <!--$-->
+  <body style="background-color: #ffffff">
     <div
-      style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0">
-      <div>
-         ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿ ‌‍‎‏﻿
-      </div>
+      style="
+        display: none;
+        font-size: 1px;
+        color: #ffffff;
+        line-height: 1px;
+        max-height: 0px;
+        max-width: 0px;
+        opacity: 0;
+        overflow: hidden;
+      "
+    >
+
     </div>
-    <table
-      align="center"
-      width="100%"
-      border="0"
-      cellpadding="0"
-      cellspacing="0"
-      role="presentation"
-      style="max-width:600px;margin-left:auto;margin-right:auto;padding:20px;background-color:rgb(255,255,255);font-family:ECA-L, Helvetica, Arial, sans-serif">
-      <tbody>
-        <tr style="width:100%">
-          <td>
-            <img
-              alt="logo"
-              height="auto"
-              src="https://cdn.xyehr.cn/images/svg/ta.svg"
-              style="margin-bottom:20px;display:block;outline:none;border:none;text-decoration:none"
-              width="64" />
-            <h1
-              style="font-size:24px;font-weight:600;color:rgb(51,51,51);margin-bottom:20px;font-family:&#x27;Inter&#x27;, -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif">
-              {sub}
-            </h1>
-            <p
-              style="font-size:16px;line-height:1.6;color:rgb(85,85,85);margin-bottom:15px;margin-top:16px">
-              {content}
-            </p>
-            <hr
-              style="border-top-width:1px;border-color:rgb(232,232,232);margin-top:40px;margin-bottom:40px;padding-top:20px;width:100%;border:none;border-top:1px solid #eaeaea" />
-            <table
-              align="center"
-              width="100%"
-              border="0"
-              cellpadding="0"
-              cellspacing="0"
-              role="presentation"
-              style="margin-bottom:15px">
-              <tbody>
-                <tr>
-                  <td>
-                    <div style="display:flex;gap:12px">
-                      <a
-                        href="https://x.com/Tech__Art"
-                        style="color:#067df7;text-decoration-line:none"
-                        target="_blank"
-                        ><img
-                          alt="X"
-                          height="auto"
-                          src="https://cdn.xyehr.cn/images/svg/x.svg"
-                          style="display:block;outline:none;border:none;text-decoration:none;opacity:0.7"
-                          width="32" /></a
-                      ><a
-                        href="https://github.com/TechArt_Studio"
-                        style="color:#067df7;text-decoration-line:none"
-                        target="_blank"
-                        ><img
-                          alt="GitHub"
-                          height="auto"
-                          src="https://cdn.xyehr.cn/images/svg/github.svg"
-                          style="display:block;outline:none;border:none;text-decoration:none;opacity:0.7"
-                          width="32" /></a
-                      ><a
-                        href="https://youtube.com/Tech-Art-Studio"
-                        style="color:#067df7;text-decoration-line:none"
-                        target="_blank"
-                        ><img
-                          alt="YouTube"
-                          height="auto"
-                          src="https://cdn.xyehr.cn/images/svg/youtube.svg"
-                          style="display:block;outline:none;border:none;text-decoration:none;opacity:0.7"
-                          width="32"
-                      /></a>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <p
-              style="font-size:16px;color:rgb(136,136,136);line-height:24px;font-family:ECA-L, Helvetica, Arial, sans-serif;margin-bottom:16px;margin-top:16px">
-              © 2025 Tech-Art Studio
-            </p>
-            <p
-              style="font-size:14px;color:rgb(136,136,136);line-height:24px;font-family:ECA-L, Helvetica, Arial, sans-serif;margin-bottom:16px;margin-top:16px">
-              If you want to know more about our studio, please visit our
-              website or contact us through social media.
-            </p>
-            <p
-              style="font-size:14px;color:rgb(136,136,136);line-height:24px;font-family:ECA-L, Helvetica, Arial, sans-serif;margin-bottom:16px;margin-top:16px">
-              This studio (hereinafter referred to as the &quot;Studio&quot;)
-              provides various technical services based on web and front-end
-              development. The services provided by the studio include but are
-              not limited to: customized front-end development, design services,
-              project consulting, and application development based on Next.js
-              and Python.
-            </p>
-            <p
-              style="font-size:14px;color:rgb(136,136,136);line-height:24px;font-family:ECA-L, Helvetica, Arial, sans-serif;margin-bottom:16px;margin-top:16px">
-              Our services are regulated by Chinese and EU laws and regulations.
-              To ensure the security of customer information, we always follow
-              data protection regulations and strictly implement privacy
-              protection policies in all service processes. If you have any
-              questions about our services or need further information, please
-              feel free to contact us through our customer service channels.
-            </p>
-            <p
-              style="font-size:14px;color:rgb(136,136,136);line-height:24px;font-family:ECA-L, Helvetica, Arial, sans-serif;margin-bottom:16px;margin-top:16px">
-              For services related to code hosting, deployment and development
-              processes, we will operate on major platforms such as GitHub and
-              Vercel to ensure the efficiency and security of the service.
-            </p>
-            <img
-              alt="logo"
-              height="auto"
-              src="https://cdn.xyehr.cn/images/svg/ta.svg"
-              style="margin-top:10px;display:block;outline:none;border:none;text-decoration:none"
-              width="64" />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!--7--><!--/$-->
+    <div style="background-color: #ffffff">
+      <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+      <div
+        style="
+          background: #ffffff;
+          background-color: #ffffff;
+          margin: 0px auto;
+          max-width: 600px;
+        "
+      >
+        <table
+          align="center"
+          border="0"
+          cellpadding="0"
+          cellspacing="0"
+          role="presentation"
+          style="background: #ffffff; background-color: #ffffff; width: 100%"
+        >
+          <tbody>
+            <tr>
+              <td
+                style="
+                  direction: ltr;
+                  font-size: 0px;
+                  padding: 20px 0;
+                  text-align: center;
+                  vertical-align: top;
+                "
+              >
+                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+                <div
+                  class="mj-column-per-100 outlook-group-fix"
+                  style="
+                    font-size: 13px;
+                    text-align: left;
+                    direction: ltr;
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 100%;
+                  "
+                >
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="vertical-align: top"
+                    width="100%"
+                  >
+                    <tr>
+                      <td
+                        align="left"
+                        style="
+                          font-size: 0px;
+                          padding: 10px 25px;
+                          padding-top: 24px;
+                          padding-bottom: 24px;
+                          word-break: break-word;
+                        "
+                      >
+                        <div
+                          style="
+                            font-family:
+                              -apple-system, system-ui, BlinkMacSystemFont;
+                            font-size: 15px;
+                            font-weight: 300;
+                            line-height: 24px;
+                            text-align: left;
+                            color: #333333;
+                          "
+                        >
+                          <h1>{sub}</h1>
+<p>{content}</p>
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        align="left"
+                        style="
+                          font-size: 0px;
+                          padding: 10px 25px;
+                          word-break: break-word;
+                        "
+                      >
+                        <div
+                          style="
+                            font-family:
+                              -apple-system, system-ui, BlinkMacSystemFont;
+                            font-size: 15px;
+                            font-weight: 300;
+                            line-height: 24px;
+                            text-align: left;
+                            color: #333333;
+                          "
+                        >
+                          Best,<br />
+                          <strong>Evan</strong>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="
+                          font-size: 0px;
+                          padding: 10px 25px;
+                          word-break: break-word;
+                        "
+                      >
+                        <p
+                          style="
+                            border-top: solid 1px #e8e8e8;
+                            font-size: 1;
+                            margin: 0px auto;
+                            width: 100%;
+                          "
+                        ></p>
+                        <!--[if mso | IE
+                          ]><table
+                            align="center"
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            style="
+                              border-top: solid 1px #e8e8e8;
+                              font-size: 1;
+                              margin: 0px auto;
+                              width: 550px;
+                            "
+                            role="presentation"
+                            width="550px"
+                          >
+                            <tr>
+                              <td style="height: 0; line-height: 0">&nbsp;</td>
+                            </tr>
+                          </table><!
+                        [endif]-->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        align="left"
+                        style="
+                          font-size: 0px;
+                          padding: 10px 25px;
+                          word-break: break-word;
+                        "
+                      >
+                        <div
+                          style="
+                            font-family:
+                              -apple-system, system-ui, BlinkMacSystemFont;
+                            font-size: 12px;
+                            font-weight: 300;
+                            line-height: 24px;
+                            text-align: left;
+                            color: #888888;
+                          "
+                        >
+                          © 2025 Evan Huang
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        align="left"
+                        style="
+                          font-size: 0px;
+                          padding: 10px 25px;
+                          word-break: break-word;
+                        "
+                      >
+                        <div
+                          style="
+                            font-family:
+                              -apple-system, system-ui, BlinkMacSystemFont;
+                            font-size: 12px;
+                            font-weight: 300;
+                            line-height: 24px;
+                            text-align: left;
+                            color: #888888;
+                          "
+                        >
+                          For questions contact <a
+                            href="mailto:evan.huang000@proton.me"
+                            class="footer-link"
+                            >evan.huang000@proton.me</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+
+                  </table>
+                </div>
+                <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--[if mso | IE]></td></tr></table><![endif]-->
+    </div>
   </body>
 </html>
 `
