@@ -19,5 +19,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/你的受保护页面/*'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
