@@ -1,24 +1,19 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import jwt from 'jsonwebtoken'
 
-export function middleware(req: NextRequest) {
-  const token = req.cookies.get('access_token')?.value
+export function middleware(request: NextRequest) {
+  const hasValidPassword = request.cookies.has('access_token')
 
-  if (req.nextUrl.pathname === '/password') return NextResponse.next()
-
-  if (!token) {
-    return NextResponse.redirect(new URL('/password', req.url))
-  }
-
-  try {
-    jwt.verify(token, process.env.JWT_SECRET!)
+  if (request.nextUrl.pathname === '/password') {
     return NextResponse.next()
-  } catch (err) {
-    return NextResponse.redirect(new URL('/password', req.url))
+
+  if (!hasValidPassword) {
+    return NextResponse.redirect(new URL('/password', request.url))
   }
+
+  return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/', '/protected/:path*'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
